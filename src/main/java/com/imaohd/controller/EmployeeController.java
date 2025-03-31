@@ -6,12 +6,12 @@ import com.imaohd.view.EmployeeViewImp;
 
 import java.util.List;
 
-public class UserController {
+public class EmployeeController {
 
     private final EmployeeDAO employeeDAO;
     private final EmployeeViewImp employeeView;
 
-    public UserController(EmployeeDAO employeeDAO, EmployeeViewImp employeeView) {
+    public EmployeeController(EmployeeDAO employeeDAO, EmployeeViewImp employeeView) {
         this.employeeDAO = employeeDAO;
         this.employeeView = employeeView;
     }
@@ -55,7 +55,7 @@ public class UserController {
         }
     }
 
-    private void deleteEmployee() {
+    public void deleteEmployee() {
         int employeeId = employeeView.getEmployeeById("eliminar");
         if (employeeId < 0) {
             return;
@@ -75,7 +75,7 @@ public class UserController {
 
     }
 
-    private void updateEmployeeByRol() {
+    public void updateEmployeeByRol() {
         int employeeId = employeeView.getEmployeeById("actualizar");
         if (employeeId < 0) return;
 
@@ -101,7 +101,7 @@ public class UserController {
         employeeView.showEmployee(updatedEmployee);
     }
 
-    private void updateEmployee() {
+    public void updateEmployee() {
         int id = employeeView.getEmployeeById("actualizar");
         if (id < 0) {
             return;
@@ -126,7 +126,7 @@ public class UserController {
 
     }
 
-    private void showEmployeeByID() {
+    public void showEmployeeByID() {
         int id = employeeView.getEmployeeById("buscar");
         if (id < 0) {
             return;
@@ -139,7 +139,7 @@ public class UserController {
         }
     }
 
-    private void createEmployee() {
+    public void createEmployee() {
         Employee employee = employeeView.createEmployee();
         if (employee != null) {
             employeeDAO.create(employee);
@@ -150,7 +150,7 @@ public class UserController {
         }
     }
 
-    private void showAllEmployees() {
+    public void showAllEmployees() {
         List<Employee> employees = employeeDAO.findAll();
         if (employees.isEmpty()) {
             employeeView.showMessage("No hay empleados registrados.");
@@ -159,7 +159,7 @@ public class UserController {
         }
     }
 
-    private void showEmployeesByRol() {
+    public void showEmployeesByRol() {
         String rol = employeeView.showEmployeesByRol();
         if (rol.isEmpty()) {
             return;
